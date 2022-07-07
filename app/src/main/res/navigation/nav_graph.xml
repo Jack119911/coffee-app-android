@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/deptEntryListFragment">
 
     <fragment
         android:id="@+id/FirstFragment"
@@ -25,4 +25,9 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/deptEntryListFragment"
+        android:name="ninja.parkverbot.coffeeapp.DeptEntryListFragment"
+        android:label="@string/your_depts"
+        tools:layout="@layout/fragment_dept_list" />
 </navigation>
