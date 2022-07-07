@@ -43,5 +43,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="your_depts">Deine Schulden</string>
+    <string name="your_debts">Deine Schulden</string>
+    <string name="debts_text_counterpart_ows">%1$s schuldet dir %2$s Kaffee</string>
+    <string name="debts_text_you_owe">Du schuldest %1$s %2$s Kaffee</string>
 </resources>

@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/deptEntryListFragment"
-        android:name="ninja.parkverbot.coffeeapp.DeptEntryListFragment"
-        android:label="@string/your_depts"
-        tools:layout="@layout/fragment_dept_list" />
+        android:name="ninja.parkverbot.coffeeapp.DebtEntryListFragment"
+        android:label="@string/your_debts"
+        tools:layout="@layout/fragment_debt_list" />
 </navigation>

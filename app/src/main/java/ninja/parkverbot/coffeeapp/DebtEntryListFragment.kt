@@ -8,37 +8,36 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import ninja.parkverbot.coffeeapp.data.MockData
+import ninja.parkverbot.coffeeapp.model.DebtsViewModel
 import ninja.parkverbot.coffeeapp.placeholder.PlaceholderContent
 
 /**
  * A fragment representing a list of Items.
  */
-class DeptEntryListFragment : Fragment() {
+class DebtEntryListFragment : Fragment() {
 
-    private var columnCount = 1
+    private val viewModel: DebtsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
+        viewModel.setDebts(MockData().debts)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_dept_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_debt_list, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = MyDeptListEntryRecyclerViewAdapter(PlaceholderContent.ITEMS)
+                layoutManager = LinearLayoutManager(context)
+                adapter = MyDebtListEntryRecyclerViewAdapter(viewModel.debts)
             }
         }
         return view
@@ -52,7 +51,7 @@ class DeptEntryListFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-            DeptEntryListFragment().apply {
+            DebtEntryListFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
