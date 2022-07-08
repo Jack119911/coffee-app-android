@@ -64,6 +64,23 @@
         app:layout_constraintStart_toEndOf="@id/creditorSelection"
         app:layout_constraintTop_toTopOf="@id/creditorSelection" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/itemSelection"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:hint="@string/what"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/creditorSelection">
 
+        <AutoCompleteTextView
+            android:id="@+id/itemSelectionAutoComplete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

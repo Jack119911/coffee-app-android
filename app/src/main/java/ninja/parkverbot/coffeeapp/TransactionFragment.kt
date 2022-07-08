@@ -26,18 +26,32 @@ class TransactionFragment : Fragment() {
         binding = FragmentTransactionBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        fillPersonSelections()
+        fillItemSelection()
+
+        return view
+    }
+
+    private fun fillItemSelection() {
+        val items = viewModel.items.map { "${it.name} (${it.coffeeUnits})" }
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.menu_item_item, items)
+        binding.itemSelectionAutoComplete.setAdapter(arrayAdapter)
+        binding.itemSelectionAutoComplete.setText("Kaffee", false)
+    }
+
+    private fun fillPersonSelections() {
         val names = viewModel.persons.map { it.name }
             .toMutableList()
         names.add(0, getString(R.string.you))
 
-        val arrayAdapterDebtor = ArrayAdapter(requireContext(), R.layout.menu_item_name, names.toList())
+        val arrayAdapterDebtor =
+            ArrayAdapter(requireContext(), R.layout.menu_item_name, names.toList())
         binding.debtorSelectionAutoComplete.setAdapter(arrayAdapterDebtor)
         binding.debtorSelectionAutoComplete.setText(getString(R.string.you), false)
 
-        val arrayAdapterCreditor = ArrayAdapter(requireContext(), R.layout.menu_item_name, names.toList())
+        val arrayAdapterCreditor =
+            ArrayAdapter(requireContext(), R.layout.menu_item_name, names.toList())
         binding.creditorSelectionAutoComplete.setAdapter(arrayAdapterCreditor)
-
-        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
