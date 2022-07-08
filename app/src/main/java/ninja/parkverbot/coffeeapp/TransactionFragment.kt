@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -58,5 +59,19 @@ class TransactionFragment : Fragment() {
             // TODO("Post transaction to API")
             findNavController().popBackStack()
         }
+
+        binding.debtorSelectionAutoComplete.onItemClickListener =
+            AdapterView.OnItemClickListener { _, _, _, _->
+                if (binding.debtorSelectionAutoComplete.text.toString() != getString(R.string.you)) {
+                    binding.creditorSelectionAutoComplete.setText(getString(R.string.you), false)
+                }
+            }
+
+        binding.creditorSelectionAutoComplete.onItemClickListener =
+            AdapterView.OnItemClickListener { _, _, _, _->
+                if (binding.creditorSelectionAutoComplete.text.toString() != getString(R.string.you)) {
+                    binding.debtorSelectionAutoComplete.setText(getString(R.string.you), false)
+                }
+            }
     }
 }
