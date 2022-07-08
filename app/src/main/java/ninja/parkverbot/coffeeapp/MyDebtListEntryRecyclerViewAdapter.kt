@@ -1,16 +1,14 @@
 package ninja.parkverbot.coffeeapp
 
-import android.util.Log
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
+import androidx.recyclerview.widget.RecyclerView
 import ninja.parkverbot.coffeeapp.databinding.EntryDeptBinding
 import ninja.parkverbot.coffeeapp.model.DebtEntry
 import kotlin.math.roundToInt
 
 class MyDebtListEntryRecyclerViewAdapter(
-    private val debtEntries: List<DebtEntry>
+    private val debtEntries: MutableList<DebtEntry>
 ) : RecyclerView.Adapter<MyDebtListEntryRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,12 +31,12 @@ class MyDebtListEntryRecyclerViewAdapter(
                 context.getString(
                     R.string.debts_text_you_owe,
                     counterpart.name,
-                    debtItems.find { it.item == "Coffee" }?.amount?.roundToInt().toString())
+                    debtItems.find { it.item == "Kaffee" }?.amount?.roundToInt().toString())
             } else {
                 context.getString(
                     R.string.debts_text_counterpart_ows,
                     counterpart.name,
-                    debtItems.find { it.item == "Coffee" }?.amount?.roundToInt().toString())
+                    debtItems.find { it.item == "Kaffee" }?.amount?.roundToInt().toString())
             }
         }
     }

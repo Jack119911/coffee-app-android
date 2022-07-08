@@ -1,3 +1,3 @@
 package ninja.parkverbot.coffeeapp.model
 
-data class Person(val id: Int, val name: String)
+data class Person(var id: Int, var name: String)

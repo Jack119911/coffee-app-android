@@ -21,10 +21,6 @@ class DebtEntryListFragment : Fragment() {
     private val viewModel: DebtsViewModel by activityViewModels()
     private lateinit var binding: FragmentDebtListBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,7 +32,7 @@ class DebtEntryListFragment : Fragment() {
         val recyclerView: RecyclerView = binding.deptItemList
         with(recyclerView) {
             layoutManager = LinearLayoutManager(context)
-            adapter = MyDebtListEntryRecyclerViewAdapter(viewModel.debts)
+            adapter = MyDebtListEntryRecyclerViewAdapter(viewModel.debts.value!!)
         }
 
         return view

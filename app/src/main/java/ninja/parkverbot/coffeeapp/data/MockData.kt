@@ -15,7 +15,7 @@ class MockData {
             ),
             listOf(
                 DebtItem(
-                    "Coffee",
+                    "Kaffee",
                     3F
                 ),
                 DebtItem(
@@ -32,7 +32,7 @@ class MockData {
             ),
             listOf(
                 DebtItem(
-                    "Coffee",
+                    "Kaffee",
                     1F
                 )
             ),
@@ -45,7 +45,7 @@ class MockData {
             ),
             listOf(
                 DebtItem(
-                    "Coffee",
+                    "Kaffee",
                     0.3F
                 ),
                 DebtItem(
