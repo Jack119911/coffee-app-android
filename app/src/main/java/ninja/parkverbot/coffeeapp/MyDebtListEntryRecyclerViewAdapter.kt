@@ -3,18 +3,11 @@ package ninja.parkverbot.coffeeapp
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.MutableLiveData
 
-import ninja.parkverbot.coffeeapp.placeholder.PlaceholderContent.PlaceholderItem
 import ninja.parkverbot.coffeeapp.databinding.EntryDeptBinding
 import ninja.parkverbot.coffeeapp.model.DebtEntry
 import kotlin.math.roundToInt
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class MyDebtListEntryRecyclerViewAdapter(
     private val debtEntries: List<DebtEntry>
 ) : RecyclerView.Adapter<MyDebtListEntryRecyclerViewAdapter.ViewHolder>() {
@@ -39,12 +32,12 @@ class MyDebtListEntryRecyclerViewAdapter(
                 context.getString(
                     R.string.debts_text_you_owe,
                     counterpart.name,
-                    debtItems.find { it.item.equals("Coffee") }?.amount?.roundToInt().toString())
+                    debtItems.find { it.item == "Coffee" }?.amount?.roundToInt().toString())
             } else {
                 context.getString(
                     R.string.debts_text_counterpart_ows,
                     counterpart.name,
-                    debtItems.find { it.item.equals("Coffee") }?.amount?.roundToInt().toString())
+                    debtItems.find { it.item == "Coffee" }?.amount?.roundToInt().toString())
             }
         }
     }
