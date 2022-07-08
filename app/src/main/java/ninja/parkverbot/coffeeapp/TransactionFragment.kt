@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import ninja.parkverbot.coffeeapp.databinding.FragmentTransactionBinding
 import ninja.parkverbot.coffeeapp.model.DebtsViewModel
 
@@ -14,10 +15,6 @@ class TransactionFragment : Fragment() {
 
     private lateinit var binding: FragmentTransactionBinding
     private val viewModel: DebtsViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,5 +53,10 @@ class TransactionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonTransactionComplete.setOnClickListener {
+            // TODO("Post transaction to API")
+            findNavController().popBackStack()
+        }
     }
 }

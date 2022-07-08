@@ -14,4 +14,5 @@
     <string name="who_lends">Wer leiht?</string>
     <string name="a">einen</string>
     <string name="what">Was?</string>
+    <string name="transaction_complete">Schulden eintragen</string>
 </resources>
