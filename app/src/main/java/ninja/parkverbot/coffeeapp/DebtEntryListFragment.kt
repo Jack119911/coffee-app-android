@@ -8,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import ninja.parkverbot.coffeeapp.data.MockData
+import ninja.parkverbot.coffeeapp.databinding.FragmentDebtListBinding
 import ninja.parkverbot.coffeeapp.model.DebtsViewModel
 
 /**
@@ -17,6 +20,7 @@ import ninja.parkverbot.coffeeapp.model.DebtsViewModel
 class DebtEntryListFragment : Fragment() {
 
     private val viewModel: DebtsViewModel by viewModels()
+    private lateinit var binding: FragmentDebtListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,31 +31,26 @@ class DebtEntryListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_debt_list, container, false)
+    ): View {
+        binding = FragmentDebtListBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = MyDebtListEntryRecyclerViewAdapter(viewModel.debts)
-            }
+        val recyclerView: RecyclerView = binding.deptItemList
+        with(recyclerView) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = MyDebtListEntryRecyclerViewAdapter(viewModel.debts)
         }
+
         return view
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            DebtEntryListFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
+        binding.createNewTransaction.setOnClickListener {
+            it.findNavController().navigate(R.id.action_deptEntryListFragment_to_transactionFragment)
+        }
     }
+
 }
