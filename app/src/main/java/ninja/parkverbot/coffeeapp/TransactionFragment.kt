@@ -5,9 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ninja.parkverbot.coffeeapp.R
+import android.widget.ArrayAdapter
+import androidx.fragment.app.activityViewModels
+import ninja.parkverbot.coffeeapp.databinding.FragmentTransactionBinding
+import ninja.parkverbot.coffeeapp.model.DebtsViewModel
 
 class TransactionFragment : Fragment() {
+
+    private lateinit var binding: FragmentTransactionBinding
+    private val viewModel: DebtsViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,8 +22,25 @@ class TransactionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transaction, container, false)
+    ): View {
+        binding = FragmentTransactionBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        val names = viewModel.persons.map { it.name }
+            .toMutableList()
+        names.add(0, getString(R.string.you))
+
+        val arrayAdapterDebtor = ArrayAdapter(requireContext(), R.layout.menu_item_name, names.toList())
+        binding.debtorSelectionAutoComplete.setAdapter(arrayAdapterDebtor)
+        binding.debtorSelectionAutoComplete.setText(getString(R.string.you), false)
+
+        val arrayAdapterCreditor = ArrayAdapter(requireContext(), R.layout.menu_item_name, names.toList())
+        binding.creditorSelectionAutoComplete.setAdapter(arrayAdapterCreditor)
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }

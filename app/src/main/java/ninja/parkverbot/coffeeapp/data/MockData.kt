@@ -59,11 +59,11 @@ class MockData {
 
     val items = listOf<Item>(
         Item(
-            "Coffee",
+            "Kaffee",
             1
         ),
         Item(
-            "Beer",
+            "Bier",
             1
         ),
         Item(
@@ -71,7 +71,7 @@ class MockData {
             2
         ),
         Item(
-            "Dinner",
+            "Essen",
             4
         ),
     )

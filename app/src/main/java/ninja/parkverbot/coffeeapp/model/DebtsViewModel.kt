@@ -11,7 +11,7 @@ class DebtsViewModel : ViewModel() {
     val items get() = _items
 
     private var _persons = listOf<Person>()
-    val persons = _persons
+    val persons get() = _persons
 
     fun setDebts(newDebts: List<DebtEntry>) {
         _debts = newDebts
