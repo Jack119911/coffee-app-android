@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.setDebts(MockData().debts)
         viewModel.setItems(MockData().items)
+        viewModel.setPersons(MockData().persons)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

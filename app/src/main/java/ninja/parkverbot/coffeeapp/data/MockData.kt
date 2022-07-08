@@ -76,4 +76,24 @@ class MockData {
         ),
     )
 
+    val persons = listOf<Person>(
+        Person(
+            1,
+            "Matthias"
+        ),
+        Person(
+            2,
+            "Marcel"
+        ),
+        Person(
+            3,
+            "Michi"
+        ),
+        Person(
+            4,
+            "Leon"
+        ),
+
+    )
+
 }
