@@ -1,16 +1,14 @@
 package ninja.parkverbot.coffeeapp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import ninja.parkverbot.coffeeapp.data.MockData
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ninja.parkverbot.coffeeapp.databinding.FragmentDebtListBinding
 import ninja.parkverbot.coffeeapp.model.DebtsViewModel
 
@@ -19,13 +17,11 @@ import ninja.parkverbot.coffeeapp.model.DebtsViewModel
  */
 class DebtEntryListFragment : Fragment() {
 
-    private val viewModel: DebtsViewModel by viewModels()
+    private val viewModel: DebtsViewModel by activityViewModels()
     private lateinit var binding: FragmentDebtListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        viewModel.setDebts(MockData().debts)
     }
 
     override fun onCreateView(
@@ -49,7 +45,8 @@ class DebtEntryListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.createNewTransaction.setOnClickListener {
-            it.findNavController().navigate(R.id.action_deptEntryListFragment_to_transactionFragment)
+            it.findNavController()
+                .navigate(R.id.action_deptEntryListFragment_to_transactionFragment)
         }
     }
 

@@ -2,6 +2,7 @@ package ninja.parkverbot.coffeeapp.data
 
 import ninja.parkverbot.coffeeapp.model.DebtEntry
 import ninja.parkverbot.coffeeapp.model.DebtItem
+import ninja.parkverbot.coffeeapp.model.Item
 import ninja.parkverbot.coffeeapp.model.Person
 
 class MockData {
@@ -53,6 +54,25 @@ class MockData {
                 )
             ),
             true
+        ),
+    )
+
+    val items = listOf<Item>(
+        Item(
+            "Coffee",
+            1
+        ),
+        Item(
+            "Beer",
+            1
+        ),
+        Item(
+            "Doener",
+            2
+        ),
+        Item(
+            "Dinner",
+            4
         ),
     )
 

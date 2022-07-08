@@ -9,16 +9,24 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
+import ninja.parkverbot.coffeeapp.data.MockData
 import ninja.parkverbot.coffeeapp.databinding.ActivityMainBinding
+import ninja.parkverbot.coffeeapp.model.DebtsViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: DebtsViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
+
+        viewModel.setDebts(MockData().debts)
+        viewModel.setItems(MockData().items)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
