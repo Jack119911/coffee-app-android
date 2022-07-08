@@ -15,4 +15,5 @@
     <string name="a">einen</string>
     <string name="what">Was?</string>
     <string name="transaction_complete">Schulden eintragen</string>
+    <string name="choose_a_person">Wähle eine Person</string>
 </resources>

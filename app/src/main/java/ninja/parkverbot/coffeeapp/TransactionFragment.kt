@@ -59,27 +59,12 @@ class TransactionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonTransactionComplete.setOnClickListener {
-            val debtor = binding.debtorSelectionAutoComplete.text.toString()
-            val creditor = binding.creditorSelectionAutoComplete.text.toString()
-            val youAreOwing: Boolean
-            val counterpart: Person
-            if (debtor == getString(R.string.you)) {
-                youAreOwing = true
-                counterpart = viewModel.persons.find { it.name == creditor }!!
+            if (binding.creditorSelectionAutoComplete.text.toString().isEmpty()) {
+                binding.creditorSelection.error = getString(R.string.choose_a_person)
             } else {
-                youAreOwing = false
-                counterpart = viewModel.persons.find { it.name == debtor }!!
+                addTransaction()
+                findNavController().popBackStack()
             }
-            val debtItemName = binding.itemSelectionAutoComplete.text
-                .toString()
-                .takeWhile { it != ' ' }
-            val debtItemAmount = viewModel.items.find { it.name == debtItemName }!!.coffeeUnits
-            viewModel.addTransaction(
-                counterpart,
-                DebtItem("Kaffee", debtItemAmount.toFloat()),
-                youAreOwing
-            )
-            findNavController().popBackStack()
         }
 
         binding.debtorSelectionAutoComplete.onItemClickListener =
@@ -95,5 +80,28 @@ class TransactionFragment : Fragment() {
                     binding.debtorSelectionAutoComplete.setText(getString(R.string.you), false)
                 }
             }
+    }
+
+    private fun addTransaction() {
+        val debtor = binding.debtorSelectionAutoComplete.text.toString()
+        val creditor = binding.creditorSelectionAutoComplete.text.toString()
+        val youAreOwing: Boolean
+        val counterpart: Person
+        if (debtor == getString(R.string.you)) {
+            youAreOwing = true
+            counterpart = viewModel.persons.find { it.name == creditor }!!
+        } else {
+            youAreOwing = false
+            counterpart = viewModel.persons.find { it.name == debtor }!!
+        }
+        val debtItemName = binding.itemSelectionAutoComplete.text
+            .toString()
+            .takeWhile { it != ' ' }
+        val debtItemAmount = viewModel.items.find { it.name == debtItemName }!!.coffeeUnits
+        viewModel.addTransaction(
+            counterpart,
+            DebtItem("Kaffee", debtItemAmount.toFloat()),
+            youAreOwing
+        )
     }
 }
