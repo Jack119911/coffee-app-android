@@ -41,17 +41,21 @@ class TransactionFragment : Fragment() {
     }
 
     private fun fillPersonSelections() {
-        val names = viewModel.persons.map { it.name }
+        val namesDebtor = viewModel.persons.map { it.name }
             .toMutableList()
-        names.add(0, getString(R.string.you))
+        namesDebtor.add(0, getString(R.string.you))
 
         val arrayAdapterDebtor =
-            ArrayAdapter(requireContext(), R.layout.menu_item_name, names.toList())
+            ArrayAdapter(requireContext(), R.layout.menu_item_name, namesDebtor.toList())
         binding.debtorSelectionAutoComplete.setAdapter(arrayAdapterDebtor)
         binding.debtorSelectionAutoComplete.setText(getString(R.string.you), false)
 
+        val namesCreditor = viewModel.persons.map { it.name }
+            .toMutableList()
+        namesCreditor.add(0, getString(R.string.you_alt))
+
         val arrayAdapterCreditor =
-            ArrayAdapter(requireContext(), R.layout.menu_item_name, names.toList())
+            ArrayAdapter(requireContext(), R.layout.menu_item_name, namesCreditor.toList())
         binding.creditorSelectionAutoComplete.setAdapter(arrayAdapterCreditor)
     }
 
@@ -61,6 +65,11 @@ class TransactionFragment : Fragment() {
         binding.buttonTransactionComplete.setOnClickListener {
             if (binding.creditorSelectionAutoComplete.text.toString().isEmpty()) {
                 binding.creditorSelection.error = getString(R.string.choose_a_person)
+            } else if ((binding.creditorSelectionAutoComplete.text.toString()
+                        == getString(R.string.you_alt))
+                        && (binding.debtorSelectionAutoComplete.text.toString()
+                        == getString(R.string.you))) {
+                binding.creditorSelection.error = getString(R.string.choose_someone_else)
             } else {
                 addTransaction()
                 findNavController().popBackStack()
@@ -70,13 +79,16 @@ class TransactionFragment : Fragment() {
         binding.debtorSelectionAutoComplete.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, _, _->
                 if (binding.debtorSelectionAutoComplete.text.toString() != getString(R.string.you)) {
-                    binding.creditorSelectionAutoComplete.setText(getString(R.string.you), false)
+                    binding.creditorSelectionAutoComplete.setText(getString(R.string.you_alt), false)
+                    binding.owsTextField.text = getString(R.string.ows)
+                } else {
+                    binding.owsTextField.text = getString(R.string.ows_alt)
                 }
             }
 
         binding.creditorSelectionAutoComplete.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, _, _->
-                if (binding.creditorSelectionAutoComplete.text.toString() != getString(R.string.you)) {
+                if (binding.creditorSelectionAutoComplete.text.toString() != getString(R.string.you_alt)) {
                     binding.debtorSelectionAutoComplete.setText(getString(R.string.you), false)
                 }
             }

@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/fab_margin"
-        android:text="@string/ows"
+        android:text="@string/ows_alt"
         android:textAppearance="?attr/textAppearanceBodyLarge"
         app:layout_constraintBottom_toBottomOf="@id/debtorSelection"
         app:layout_constraintStart_toEndOf="@id/debtorSelection"

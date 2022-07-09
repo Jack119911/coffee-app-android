@@ -46,7 +46,7 @@ class MockData {
             listOf(
                 DebtItem(
                     "Kaffee",
-                    0.3F
+                    2F
                 ),
                 DebtItem(
                     "Pitcher",

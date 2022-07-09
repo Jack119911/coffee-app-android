@@ -16,4 +16,7 @@
     <string name="what">Was?</string>
     <string name="transaction_complete">Schulden eintragen</string>
     <string name="choose_a_person">Wähle eine Person</string>
+    <string name="you_alt">Dir</string>
+    <string name="ows_alt">schuldest</string>
+    <string name="choose_someone_else">Bitte wähle jemand anderen</string>
 </resources>
